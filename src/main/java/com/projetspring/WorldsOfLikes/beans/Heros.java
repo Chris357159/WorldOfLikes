@@ -1,6 +1,15 @@
 package com.projetspring.WorldsOfLikes.beans;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Heros extends Personnage{
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int experience = 0;
     private int niveau = 1;
     private int coutMagie = 5;
@@ -10,6 +19,7 @@ public class Heros extends Personnage{
     private int coeffXpDef = 1;
     private int coeffXpXp = 10;
     private int vol = 0;
+    private int ID;
 
     //Constructor
 
@@ -34,6 +44,14 @@ public class Heros extends Personnage{
     }
 
     //Getters and Setters
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
 
     public int getExperience() {
         return experience;

@@ -8,7 +8,7 @@ package com.projetspring.WorldsOfLikes.beans;
         protected int attaque;
         protected int defense;
         protected int vitesse;
-        protected int mana;
+        public int mana;
         private int or = 0;
 
         //Constructor

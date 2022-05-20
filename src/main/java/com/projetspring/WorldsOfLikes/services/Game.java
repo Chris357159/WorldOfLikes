@@ -1,4 +1,8 @@
-package com.projetspring.WorldsOfLikes.beans;
+package com.projetspring.WorldsOfLikes.services;
+
+import com.projetspring.WorldsOfLikes.beans.Heros;
+import com.projetspring.WorldsOfLikes.beans.Monstres;
+import com.projetspring.WorldsOfLikes.beans.Personnage;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -119,15 +123,15 @@ public class Game {
 
     // Méthodes pour afficher statistiques pendant le combat
     public static void vie(Personnage numeroUn, Personnage numeroDeux) {
-        System.out.println("Personnage : " + numeroUn.getNom() + "       | PDV : " + numeroUn.getPointDeVie() + "      | Mana : " + numeroUn.mana);
-        System.out.println("Personnage : " + numeroDeux.getNom() + "     | PDV : " + numeroDeux.getPointDeVie() + "      | Mana : " + numeroDeux.mana);
+        System.out.println("Personnage : " + numeroUn.getNom() + "       | PDV : " + numeroUn.getPointDeVie() + "      | Mana : " + numeroUn.getMana());
+        System.out.println("Personnage : " + numeroDeux.getNom() + "     | PDV : " + numeroDeux.getPointDeVie() + "      | Mana : " + numeroDeux.getMana());
 
     }
 
     //Méthodes pour taper
     public static void taper(Heros attaquant, Personnage defenseur) {
-        int taper = Math.abs(randomBox(defenseur.defense + 1, (attaquant.attaque - defenseur.defense)));
-        if (taper == attaquant.attaque - defenseur.defense) {
+        int taper = Math.abs(randomBox(defenseur.getDefense() + 1, (attaquant.getAttaque() - defenseur.getDefense())));
+        if (taper == attaquant.getAttaque() - defenseur.getDefense()) {
             System.out.println("Coup Critique !");
         }
         if (attaquant.getMana() >= attaquant.getCoutMagie()) {
@@ -141,15 +145,15 @@ public class Game {
         defenseur.setPointDeVie(defenseur.getPointDeVie() - taper);
     }
     public static void taper(Personnage attaquant, Personnage defenseur) {
-        int taper = Math.abs(randomBox(defenseur.defense -1, (attaquant.attaque - defenseur.defense)));
+        int taper = Math.abs(randomBox(defenseur.getDefense() -1, (attaquant.getAttaque() - defenseur.getDefense())));
         System.out.println(taper);
-        if (taper == attaquant.attaque - defenseur.defense) {
+        if (taper == attaquant.getAttaque() - defenseur.getDefense()) {
             System.out.println("Coup Critique !");
         }
         defenseur.setPointDeVie(defenseur.getPointDeVie() - taper);
     }
     public static int taperMagie(Heros attaquant, Personnage defenseur) {
-        int taper = randomBox(1, (attaquant.attaque) * attaquant.getPuissMagique());
+        int taper = randomBox(1, (attaquant.getAttaque()) * attaquant.getPuissMagique());
         System.out.println("Je vais tenter un sort !");
         attaquant.mana -= attaquant.getCoutMagie();
         if (attaquant.getVol() > 0) {
