@@ -2,21 +2,9 @@ package com.projetspring.WorldsOfLikes.services;
 
 import com.projetspring.WorldsOfLikes.beans.Personnage;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
 
-@Entity
 public class Game {
-    private Long id;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    @Id
-    public Long getId() {
-        return id;
-    }
 
     //Méthodes de combat
     public static String combat(Personnage heros, Personnage monstre) {
