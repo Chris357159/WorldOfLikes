@@ -21,10 +21,10 @@ public class GameController {
     private GameRepositoryInterface gameRepositoryInterface;
 
     @GetMapping("/combatMonstres")
-    public String combatMonstres (@RequestBody Personnage heros1, @RequestBody Personnage monstre1, @RequestBody Form form_perso) {
-
-        Form connexion1 = formRepositoryInterface.findByEmail(form_perso.getEmail());
-        return Game.combat(heros1, monstre1);
+    public String combatMonstres () {
+        Personnage heros = new Personnage("heros", 120, 120, 120, 120, 120, 120, 120);
+        Personnage monstre1 = new Personnage("monstre", 120, 120, 120, 120, 120, 120, 120);
+        return Game.combat(heros, monstre1);
     }
 
     @GetMapping("/testGame")
