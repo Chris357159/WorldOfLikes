@@ -12,10 +12,10 @@
 <script>
     function gameVersus1(){
         $.get("http://localhost:8080/Game/combatMonstres",reponse =>
-        {console.log("Requete en GET, j'ai reçu : "+reponse)})
+        {document.write(reponse)})
     }
     function gameVersus2(){
-        $.get("http://localhost:8080/Game/testGame",reponse => {
+        $.get("http://localhost:8080/Game/play",reponse => {
         console.log("Requete en GET, j'ai reçu : "+reponse)})
     }
 

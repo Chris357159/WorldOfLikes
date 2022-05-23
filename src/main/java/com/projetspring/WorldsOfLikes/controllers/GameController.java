@@ -27,20 +27,6 @@ public class GameController {
         return Game.combat(heros, monstre1);
     }
 
-    //Login
-    @PostMapping("/play")
-    public String play(@RequestBody Form form_play){
-        Form play = formRepositoryInterface.findByEmail(form_play.getEmail());
-        if(play == null){
-            return "Bad Credentials";
-        }
-        else if(!play.getMotdepasse().equals(form_play.getMotdepasse())){
-            return "Bad Password";
-        }
-        else{
-            return ("" + play.getID());
-        }
-    }
 
     @GetMapping("/testGame")
     public String testGame() {

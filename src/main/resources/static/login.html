@@ -6,21 +6,21 @@
 </head>
 <body>
 
-    <h1>Login</h1>
+<h1>Login</h1>
+<div>
     <div>
-        <div>
-            <label for="mail">E-mail :</label>
-            <input type="email" id="mail" name="user_mail"/>
-        </div>
-        <div>
-            <label for="mdp">Mot de passe :</label>
-            <input type="password" id="mdp" name="user_passd"/>
-        </div>
-        <button onclick="getPOST();">Connexion</button>
+        <label for="mail">E-mail :</label>
+        <input type="email" id="mail" name="user_mail"/>
     </div>
+    <div>
+        <label for="mdp">Mot de passe :</label>
+        <input type="password" id="mdp" name="user_passd"/>
+    </div>
+    <button onclick="getPOST();">Connexion</button>
+</div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
         function getPOST(){
             let inscription = {
                 email: document.querySelector('#mail').value,
@@ -32,11 +32,15 @@
                 headers: {"Content-Type": "application/json"},
                 url: "http://localhost:8080/API/login",
                 data: JSON.stringify(inscription),
-                success: (response)=> { (response)=> {alert(response);localStorage.setItem("loggedin",response);}
-
+                success: (response)=> {
+                alert(response);localStorage.setItem("loggedin",response);
+                window.open("http://localhost:8080/game.html","play","play");
+                }
             });
         }
-    </script>
+
+
+</script>
 </body>
-<!--window.open("http://localhost:8080/game.html","play","play");-->
+<!--;-->
 </html>
