@@ -27,6 +27,7 @@ public class GameController {
         return Game.combat(heros, monstre1);
     }
 
+
     @GetMapping("/testGame")
     public String testGame() {
         return ("OK");

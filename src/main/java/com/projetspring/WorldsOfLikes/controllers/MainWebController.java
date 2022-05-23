@@ -38,7 +38,7 @@ public class MainWebController {
             return "Bad Password";
         }
         else{
-            return (""+connexion.getID());
+            return ("");
         }
     }
 }
