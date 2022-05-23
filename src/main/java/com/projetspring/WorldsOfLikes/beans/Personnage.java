@@ -1,7 +1,12 @@
 package com.projetspring.WorldsOfLikes.beans;
 
 
-    public class Personnage {
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+public class Personnage {
+
         protected String nom;
         protected int PointDeVieMax;
         protected int PointDeVie;
@@ -11,7 +16,19 @@ package com.projetspring.WorldsOfLikes.beans;
         public int mana;
         private int or = 0;
 
-        //Constructor
+       //variable heros
+        private int experience = 0;
+        private int niveau = 1;
+        private int coutMagie = 5;
+        protected Equipment[] equipement = new Equipment[3];
+        private int puissMagique = 1;
+        private int coeffXpAtq = 1;
+        private int coeffXpDef = 1;
+        private int coeffXpXp = 10;
+        private int vol = 0;
+
+
+    //Constructor
 
         public Personnage() {
         }
@@ -26,70 +43,163 @@ package com.projetspring.WorldsOfLikes.beans;
             this.mana = mana;
             this.or = or;
         }
+    public void actuNiveau() {
+        int atqBase = this.getAttaque();
+        int defBase = this.getDefense();
+        int pdvBase = this.getPointDeVieMax();
+        int vitBase = this.getVitesse();
+        int nivBase = this.getNiveau();
 
-        //Getters&Setters
-
-        public String getNom() {
-            return nom;
+        while (this.experience > (10*Math.pow(2,(this.niveau)+1))){
+            this.niveau +=1;
+            this.experience-=this.coeffXpXp*(int)Math.pow(2,this.niveau);
         }
-
-        public void setNom(String nom) {
-            this.nom = nom;
-        }
-
-        public int getPointDeVieMax() {
-            return PointDeVieMax;
-        }
-
-        public void setPointDeVieMax(int pointDeVieMax) {
-            PointDeVieMax = pointDeVieMax;
-        }
-
-        public int getPointDeVie() {
-            return PointDeVie;
-        }
-
-        public void setPointDeVie(int pointDeVie) {
-            PointDeVie = pointDeVie;
-        }
-
-        public int getAttaque() {
-            return attaque;
-        }
-
-        public void setAttaque(int attaque) {
-            this.attaque = attaque;
-        }
-
-        public int getDefense() {
-            return defense;
-        }
-
-        public void setDefense(int defense) {
-            this.defense = defense;
-        }
-
-        public int getVitesse() {
-            return vitesse;
-        }
-
-        public void setVitesse(int vitesse) {
-            this.vitesse = vitesse;
-        }
-
-        public int getMana() {
-            return mana;
-        }
-
-        public void setMana(int mana) {
-            this.mana = mana;
-        }
-
-        public int getOr() {
-            return or;
-        }
-
-        public void setOr(int or) {
-            this.or = or;
-        }
+        this.attaque+=5*(this.getNiveau()-nivBase)*coeffXpAtq;
+        this.defense+=4*(this.getNiveau()-nivBase)*coeffXpDef;
+        this.setPointDeVieMax(pdvBase + 10*(this.getNiveau()-nivBase));
+        this.setVitesse(vitBase + 50*(this.getNiveau()-nivBase));
     }
+
+
+        //Getters and Setters heros
+
+        public int getExperience() {
+            return experience;
+        }
+
+        public void setExperience(int experience) {
+            this.experience = experience;
+        }
+
+        public int getCoutMagie() {
+            return coutMagie;
+        }
+
+        public void setCoutMagie(int coutMagie) {
+            this.coutMagie = coutMagie;
+        }
+
+        public Equipment[] getEquipement() {
+            return equipement;
+        }
+
+        public void setEquipement(Equipment[] equipement) {
+            this.equipement = equipement;
+        }
+
+        public int getPuissMagique() {
+            return puissMagique;
+        }
+
+        public void setPuissMagique(int puissMagique) {
+            this.puissMagique = puissMagique;
+        }
+
+        public int getCoeffXpAtq() {
+            return coeffXpAtq;
+        }
+
+        public void setCoeffXpAtq(int coeffXpAtq) {
+            this.coeffXpAtq = coeffXpAtq;
+        }
+
+        public int getCoeffXpDef() {
+            return coeffXpDef;
+        }
+
+        public void setCoeffXpDef(int coeffXpDef) {
+            this.coeffXpDef = coeffXpDef;
+        }
+
+        public int getCoeffXpXp() {
+            return coeffXpXp;
+        }
+
+        public void setCoeffXpXp(int coeffXpXp) {
+            this.coeffXpXp = coeffXpXp;
+        }
+
+        public int getVol() {
+            return vol;
+        }
+
+        public void setVol(int vol) {
+            this.vol = vol;
+        }
+
+
+            //Getters&Setters
+
+            public String getNom() {
+                return nom;
+            }
+
+            public void setNom(String nom) {
+                this.nom = nom;
+            }
+
+            public int getPointDeVieMax() {
+                return PointDeVieMax;
+            }
+
+            public void setPointDeVieMax(int pointDeVieMax) {
+                PointDeVieMax = pointDeVieMax;
+            }
+
+            public int getPointDeVie() {
+                return PointDeVie;
+            }
+
+            public void setPointDeVie(int pointDeVie) {
+                PointDeVie = pointDeVie;
+            }
+
+            public int getAttaque() {
+                return attaque;
+            }
+
+            public void setAttaque(int attaque) {
+                this.attaque = attaque;
+            }
+
+            public int getDefense() {
+                return defense;
+            }
+
+            public void setDefense(int defense) {
+                this.defense = defense;
+            }
+
+            public int getVitesse() {
+                return vitesse;
+            }
+
+            public void setVitesse(int vitesse) {
+                this.vitesse = vitesse;
+            }
+
+            public int getMana() {
+                return mana;
+            }
+
+            public void setMana(int mana) {
+                this.mana = mana;
+            }
+
+            public int getOr() {
+                return or;
+            }
+
+            public void setOr(int or) {
+                this.or = or;
+            }
+            //Getters & Setters monstres
+
+            public int getNiveau() {
+                return niveau;
+            }
+
+            public void setNiveau(int niveau) {
+                this.niveau = niveau;
+            }
+        }

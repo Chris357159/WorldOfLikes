@@ -1,12 +1,8 @@
 package com.projetspring.WorldsOfLikes.services;
 
-import com.projetspring.WorldsOfLikes.beans.Heros;
-import com.projetspring.WorldsOfLikes.beans.Monstres;
 import com.projetspring.WorldsOfLikes.beans.Personnage;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
@@ -23,7 +19,7 @@ public class Game {
     }
 
     //Méthodes de combat
-    public static String combat(Heros heros, Monstres monstre) {
+    public static String combat(Personnage heros, Personnage monstre) {
         String vainqueur = "";
         vie(heros, monstre);
         if (heros.getVitesse() >= monstre.getVitesse()) {
@@ -61,49 +57,10 @@ public class Game {
         }
         return "";
     }
-    public static String combat(Heros heros1, Heros heros2) {
-        String vainqueur = "";
-        vie(heros1, heros2);
-        if (heros1.getVitesse() >= heros2.getVitesse()) {
-            while (heros1.getPointDeVie() > 0 && heros2.getPointDeVie() > 0) {
-                vie(heros1, heros2);
-                taper(heros1, heros2);
-                if (heros2.getPointDeVie() <= 0) {
-                    gains(heros1, heros2);
-                    vainqueur = heros1.getNom();
-                    return "Le vainqueur est " + vainqueur;
-                }
-                vie(heros1, heros2);
-                taper(heros2, heros1);
-                if (heros1.getPointDeVie() <= 0) {
-                    gains(heros2, heros1);
-                    vainqueur = heros2.getNom();
-                    return "Le vainqueur est " + vainqueur;
-                }
-            }
-        } else {
-            while (heros1.getPointDeVie() > 0 && heros2.getPointDeVie() > 0) {
-                vie(heros1, heros2);
-                taper(heros2, heros1);
-                if (heros1.getPointDeVie() <= 0) {
-                    gains(heros2, heros1);
-                    vainqueur = heros2.getNom();
-                    return "Le vainqueur est " + heros2.getNom();
-                }
-            }
-            vie(heros1, heros2);
-            taper(heros1, heros2);
-            if (heros2.getPointDeVie() <= 0) {
-                gains(heros1, heros2);
-                vainqueur = heros1.getNom();
-                return "Le vainqueur est " + heros1.getNom();
-            }
-        }
-        return "";
-    }
+
 
     // Méthode gains fin de combat
-    public static void gains(Heros heros, Monstres monstre) {
+    public static void gains(Personnage heros, Personnage monstre) {
         int xpBaseHeros = heros.getExperience();
         heros.setExperience(xpBaseHeros + 5 * monstre.getNiveau() * heros.getCoeffXpXp());
         int ora = heros.getOr();
@@ -111,15 +68,6 @@ public class Game {
         heros.setOr(ora + randomBox(1, 30 + monstre.getNiveau()));
 
     }
-    public static void gains(Heros heros, Heros monstre) {
-        int xpBaseHeros = heros.getExperience();
-        heros.setExperience(xpBaseHeros + 5 * monstre.getNiveau() * heros.getCoeffXpXp());
-        int ora = heros.getOr();
-        heros.actuNiveau();
-        heros.setOr(ora + randomBox(1, 30 + monstre.getNiveau()));
-
-    }
-
 
     // Méthodes pour afficher statistiques pendant le combat
     public static void vie(Personnage numeroUn, Personnage numeroDeux) {
@@ -129,7 +77,7 @@ public class Game {
     }
 
     //Méthodes pour taper
-    public static void taper(Heros attaquant, Personnage defenseur) {
+    public static void taper(Personnage attaquant, Personnage defenseur) {
         int taper = Math.abs(randomBox(defenseur.getDefense() + 1, (attaquant.getAttaque() - defenseur.getDefense())));
         if (taper == attaquant.getAttaque() - defenseur.getDefense()) {
             System.out.println("Coup Critique !");
@@ -144,15 +92,8 @@ public class Game {
         }
         defenseur.setPointDeVie(defenseur.getPointDeVie() - taper);
     }
-    public static void taper(Personnage attaquant, Personnage defenseur) {
-        int taper = Math.abs(randomBox(defenseur.getDefense() -1, (attaquant.getAttaque() - defenseur.getDefense())));
-        System.out.println(taper);
-        if (taper == attaquant.getAttaque() - defenseur.getDefense()) {
-            System.out.println("Coup Critique !");
-        }
-        defenseur.setPointDeVie(defenseur.getPointDeVie() - taper);
-    }
-    public static int taperMagie(Heros attaquant, Personnage defenseur) {
+
+    public static int taperMagie(Personnage attaquant, Personnage defenseur) {
         int taper = randomBox(1, (attaquant.getAttaque()) * attaquant.getPuissMagique());
         System.out.println("Je vais tenter un sort !");
         attaquant.mana -= attaquant.getCoutMagie();
