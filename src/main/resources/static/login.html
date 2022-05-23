@@ -32,9 +32,11 @@
                 headers: {"Content-Type": "application/json"},
                 url: "http://localhost:8080/API/login",
                 data: JSON.stringify(inscription),
-                success: (response)=> {window.open("http://localhost:8080/game.html","play","play");}
+                success: (response)=> { (response)=> {alert(response);localStorage.setItem("loggedin",response);}
+
             });
         }
     </script>
 </body>
+<!--window.open("http://localhost:8080/game.html","play","play");-->
 </html>
