@@ -1,18 +1,19 @@
 package com.projetspring.WorldsOfLikes.beans;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Restauration {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="idResto")
     private int idResto;
     private String nomResto;
     private String adresseResto;
+
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Menu menu;
 
     public Restauration() {
     }
