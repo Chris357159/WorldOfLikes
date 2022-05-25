@@ -1,6 +1,7 @@
 package com.projetspring.WorldsOfLikes.beans;
 
 import javax.persistence.*;
+import java.util.Arrays;
 
 
 @Entity
@@ -212,6 +213,30 @@ public class Personnage {
 
     public void setID(int ID) {
         this.ID = ID;
+    }
+
+    @Override
+    public String toString() {
+        return "Personnage{" +
+                "nom='" + nom + '\'' +
+                ", PointDeVieMax=" + PointDeVieMax +
+                ", PointDeVie=" + PointDeVie +
+                ", attaque=" + attaque +
+                ", defense=" + defense +
+                ", vitesse=" + vitesse +
+                ", mana=" + mana +
+                ", or=" + or +
+                ", experience=" + experience +
+                ", niveau=" + niveau +
+                ", coutMagie=" + coutMagie +
+                ", equipement=" + Arrays.toString(equipement) +
+                ", puissMagique=" + puissMagique +
+                ", coeffXpAtq=" + coeffXpAtq +
+                ", coeffXpDef=" + coeffXpDef +
+                ", coeffXpXp=" + coeffXpXp +
+                ", vol=" + vol +
+                ", ID=" + ID +
+                '}';
     }
 }
 

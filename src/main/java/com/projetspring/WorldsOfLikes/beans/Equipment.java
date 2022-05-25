@@ -81,4 +81,17 @@ public class Equipment {
     public void setVitBottes(int vitBottes) {
         this.vitBottes = vitBottes;
     }
+
+    @Override
+    public String toString() {
+        return "Equipment{" +
+                "nomEpee='" + nomEpee + '\'' +
+                ", atqEpee=" + atqEpee +
+                ", nomArmure='" + nomArmure + '\'' +
+                ", defArmure=" + defArmure +
+                ", nomBottes='" + nomBottes + '\'' +
+                ", vitBottes=" + vitBottes +
+                ", ID=" + ID +
+                '}';
+    }
 }
