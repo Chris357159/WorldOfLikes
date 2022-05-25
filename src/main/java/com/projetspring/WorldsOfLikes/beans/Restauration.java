@@ -12,6 +12,7 @@ public class Restauration {
     private String nomResto;
     private String adresseResto;
 
+
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Menu menu;
 
