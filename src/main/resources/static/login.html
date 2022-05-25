@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>World of Likes</title>
+</head>
+<body>
+
+<h1>Login</h1>
+<div>
+    <div>
+        <label for="mail">E-mail :</label>
+        <input type="email" id="mail" name="user_mail"/>
+    </div>
+    <div>
+        <label for="mdp">Mot de passe :</label>
+        <input type="password" id="mdp" name="user_passd"/>
+    </div>
+    <button onclick="getPOST();">Connexion</button>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+        function getPOST(){
+            let inscription = {
+                email: document.querySelector('#mail').value,
+                motdepasse: document.querySelector('#mdp').value,
+            }
+
+            $.ajax({
+                type: "POST",
+                headers: {"Content-Type": "application/json"},
+                url: "http://localhost:8080/API/login",
+                data: JSON.stringify(inscription),
+                success: (response)=> {
+                alert(response);localStorage.setItem("loggedin",response);
+                window.open("http://localhost:8080/game.html","play","play");
+                }
+            });
+        }
+
+
+</script>
+</body>
+<!--;-->
+</html>

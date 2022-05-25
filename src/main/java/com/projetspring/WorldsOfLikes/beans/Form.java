@@ -1,9 +1,6 @@
 package com.projetspring.WorldsOfLikes.beans;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Form {
@@ -13,6 +10,16 @@ public class Form {
     private int ID;
     private String email;
     private String motdepasse;
+    /*@OneToOne(fetch = FetchType.EAGER)
+    private SocialNetwork socialNetwork;
+
+    public SocialNetwork getSocialNetwork() {
+        return socialNetwork;
+    }
+
+    public void setSocialNetwork(SocialNetwork socialNetwork) {
+        this.socialNetwork = socialNetwork;
+    }*/
 
     //Consctructors
     public Form() {
