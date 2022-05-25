@@ -51,9 +51,9 @@ public class Game {
     public static void gains(Personnage heros, Personnage monstre) {
         int xpBaseHeros = heros.getExperience();
         heros.setExperience(xpBaseHeros + 5 * monstre.getNiveau() * heros.getCoeffXpXp());
-        int ora = heros.getOr();
+        int ora = heros.getGold();
         heros.actuNiveau();
-        heros.setOr(ora + randomBox(1, 30 + monstre.getNiveau()));
+        heros.setGold(ora + randomBox(1, 30 + monstre.getNiveau()));
 
     }
 
@@ -74,9 +74,9 @@ public class Game {
             defenseur.setPointDeVie(defenseur.getPointDeVie()-taperMagie(attaquant, defenseur));
         }
         if (attaquant.getVol() > 0) {
-            int vol = attaquant.getOr() + randomBox(1, defenseur.getOr());
-            attaquant.setOr(vol);
-            defenseur.setOr(defenseur.getOr() - vol);
+            int vol = attaquant.getGold() + randomBox(1, defenseur.getGold());
+            attaquant.setGold(vol);
+            defenseur.setGold(defenseur.getGold() - vol);
         }
         defenseur.setPointDeVie(defenseur.getPointDeVie() - taper);
     }
@@ -86,9 +86,9 @@ public class Game {
         System.out.println("Je vais tenter un sort !");
         attaquant.mana -= attaquant.getCoutMagie();
         if (attaquant.getVol() > 0) {
-            int vol = attaquant.getOr() + randomBox(1, defenseur.getOr());
-            attaquant.setOr(vol);
-            defenseur.setOr(defenseur.getOr() - vol);
+            int vol = attaquant.getGold() + randomBox(1, defenseur.getGold());
+            attaquant.setGold(vol);
+            defenseur.setGold(defenseur.getGold() - vol);
         }
         return taper;
     }

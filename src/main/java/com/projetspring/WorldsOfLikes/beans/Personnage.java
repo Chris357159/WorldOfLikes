@@ -17,13 +17,12 @@ public class Personnage {
     protected int defense;
     protected int vitesse;
     public int mana;
-    private int or = 0;
+    private int gold = 0;
 
     //variable heros
     private int experience = 0;
     private int niveau = 1;
     private int coutMagie = 5;
-    protected Equipment[] equipement = new Equipment[3];
     private int puissMagique = 1;
     private int coeffXpAtq = 1;
     private int coeffXpDef = 1;
@@ -36,7 +35,7 @@ public class Personnage {
     public Personnage() {
     }
 
-    public Personnage(String nom, int pointDeVieMax, int pointDeVie, int attaque, int defense, int vitesse, int mana, int or) {
+    public Personnage(String nom, int pointDeVieMax, int pointDeVie, int attaque, int defense, int vitesse, int mana, int gold) {
         this.nom = nom;
         PointDeVieMax = pointDeVieMax;
         PointDeVie = pointDeVie;
@@ -44,7 +43,7 @@ public class Personnage {
         this.defense = defense;
         this.vitesse = vitesse;
         this.mana = mana;
-        this.or = or;
+        this.gold = gold;
     }
 
     public void actuNiveau() {
@@ -81,14 +80,6 @@ public class Personnage {
 
     public void setCoutMagie(int coutMagie) {
         this.coutMagie = coutMagie;
-    }
-
-    public Equipment[] getEquipement() {
-        return equipement;
-    }
-
-    public void setEquipement(Equipment[] equipement) {
-        this.equipement = equipement;
     }
 
     public int getPuissMagique() {
@@ -190,12 +181,12 @@ public class Personnage {
         this.mana = mana;
     }
 
-    public int getOr() {
-        return or;
+    public int getGold() {
+        return gold;
     }
 
-    public void setOr(int or) {
-        this.or = or;
+    public void setGold(int gold) {
+        this.gold = gold;
     }
     //Getters & Setters monstres
 
@@ -225,11 +216,10 @@ public class Personnage {
                 ", defense=" + defense +
                 ", vitesse=" + vitesse +
                 ", mana=" + mana +
-                ", or=" + or +
+                ", or=" + gold +
                 ", experience=" + experience +
                 ", niveau=" + niveau +
                 ", coutMagie=" + coutMagie +
-                ", equipement=" + Arrays.toString(equipement) +
                 ", puissMagique=" + puissMagique +
                 ", coeffXpAtq=" + coeffXpAtq +
                 ", coeffXpDef=" + coeffXpDef +

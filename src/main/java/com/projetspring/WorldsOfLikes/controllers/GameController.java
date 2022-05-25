@@ -19,17 +19,11 @@ public class GameController {
     @GetMapping("/ajoutPersonnages")
     public String ajoutPersonnages () {
         Personnage heros = new Personnage("heros", 120, 120, 120, 120, 120, 120, 120);
-        Personnage monstre1 = new Personnage("monstre", 120, 120, 120, 120, 120, 120, 120);
+
         return "OK";
     }
 
 
-    @GetMapping("/ajoutCombatMonstres")
-    public String combatMonstres () {
-        Personnage heros = new Personnage("heros", 120, 120, 120, 120, 120, 120, 120);
-        Personnage monstre1 = new Personnage("monstre", 120, 120, 120, 120, 120, 120, 120);
-        return  Game.combat(heros, monstre1);
-    }
 
     @GetMapping("/ajoutCombatMonstres/{ennemi}")
     public String combatEnnemi (@RequestBody Personnage ennemi) {
