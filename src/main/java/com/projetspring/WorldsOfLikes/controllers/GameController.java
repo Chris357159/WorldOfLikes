@@ -20,21 +20,23 @@ public class GameController {
     @Autowired
     private GameRepositoryInterface gameRepositoryInterface;
 
-    @GetMapping("/combatMonstres")
+    @GetMapping("/ajoutCombatMonstres")
     public String combatMonstres () {
         Personnage heros = new Personnage("heros", 120, 120, 120, 120, 120, 120, 120);
         Personnage monstre1 = new Personnage("monstre", 120, 120, 120, 120, 120, 120, 120);
         return Game.combat(heros, monstre1);
     }
-    @GetMapping("/combatMonstres/{ennemi}")
+
+    @GetMapping("/ajoutCombatMonstres/{ennemi}")
     public String combatEnnemi (@RequestBody Personnage ennemi) {
         Personnage heros = new Personnage("heros", 120, 120, 120, 120, 120, 120, 120);
         return Game.combat(heros, ennemi);
     }
 
-
-    @GetMapping("/testGame")
-    public String testGame() {
-        return ("OK");
+    @GetMapping("/ajoutEquipPerso")
+    public String ajoutEquipPerso () {
+        Equipment epee = new Equipment("epee",120,"cotte de maille",120,"celerite",120);
+        return "OK";
     }
+
 }
