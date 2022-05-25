@@ -104,5 +104,22 @@ public class Menu {
     public void setItem10(String item10) {
         this.item10 = item10;
     }
+
+    @Override
+    public String toString() {
+        return "Menu{" +
+                "idMenu=" + idMenu +
+                ", item1='" + item1 + '\'' +
+                ", item2='" + item2 + '\'' +
+                ", item3='" + item3 + '\'' +
+                ", item4='" + item4 + '\'' +
+                ", item5='" + item5 + '\'' +
+                ", item6='" + item6 + '\'' +
+                ", item7='" + item7 + '\'' +
+                ", item8='" + item8 + '\'' +
+                ", item9='" + item9 + '\'' +
+                ", item10='" + item10 + '\'' +
+                '}';
+    }
 }
 

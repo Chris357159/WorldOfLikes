@@ -13,8 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/Delevery")
-
-public class Conroller_Delevery {
+public class Controller_Delevery {
     @Autowired
     private RestoRepositoryInterface restoRepositoryInterface;
     @Autowired
@@ -34,6 +33,7 @@ public class Conroller_Delevery {
 
     @GetMapping("/recupRestaurantMenu")
     public Restauration recupRestaurantMenu(){
+        System.out.println(restoRepositoryInterface.findById(1));
         return restoRepositoryInterface.findById(1);
     }
 }

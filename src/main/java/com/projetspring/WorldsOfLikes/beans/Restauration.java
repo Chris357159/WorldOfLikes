@@ -28,6 +28,14 @@ public class Restauration {
         return idResto;
     }
 
+    public Menu getMenu() {
+        return menu;
+    }
+
+    public void setMenu(Menu menu) {
+        this.menu = menu;
+    }
+
     public void setIdResto(int idResto) {
         this.idResto = idResto;
     }
@@ -54,6 +62,7 @@ public class Restauration {
                 "idResto=" + idResto +
                 ", nomResto='" + nomResto + '\'' +
                 ", adresseResto='" + adresseResto + '\'' +
+                ", menu=" + menu +
                 '}';
     }
 }
