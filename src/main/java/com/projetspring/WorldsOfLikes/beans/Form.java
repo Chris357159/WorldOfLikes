@@ -21,6 +21,9 @@ public class Form {
         this.socialNetwork = socialNetwork;
     }*/
 
+    @OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+    private ParametresUtilisateur form_parametresUtilisateurs;
+
     //Consctructors
     public Form() {
     }

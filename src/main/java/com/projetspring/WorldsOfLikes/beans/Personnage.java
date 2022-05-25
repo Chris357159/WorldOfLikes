@@ -9,6 +9,7 @@ public class Personnage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int ID;
     protected String nom;
     protected int PointDeVieMax;
     protected int PointDeVie;
@@ -29,7 +30,6 @@ public class Personnage {
     private int coeffXpXp = 10;
     private int vol = 0;
 
-    private int ID;
 
     //Constructor
 

@@ -11,13 +11,14 @@ public class Equipment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int ID;
     protected String nomEpee;
     protected int atqEpee;
     protected String nomArmure;
     protected int defArmure;
     protected String nomBottes;
     protected int vitBottes;
-    private int ID;
+
 
 
     public Equipment(String nomEpee, int atqEpee, String nomArmure, int defArmure, String nomBottes, int vitBottes) {

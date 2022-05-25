@@ -9,9 +9,23 @@ public class ParametresUtilisateur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ID;
+    private String bidule;
 
+    public ParametresUtilisateur() {
+    }
 
-@OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+    public ParametresUtilisateur(String bidule) {
+        this.bidule = bidule;
+    }
+
+    @OneToOne(fetch = FetchType.EAGER)
     private Form form_parametresUtilisateur = new Form();
 
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
 }
