@@ -18,6 +18,10 @@
         $.get("http://localhost:8080/Game/play",reponse => {
         console.log("Requete en GET, j'ai reçu : "+reponse)})
     }
+    function gameVersus(e){
+        $.get("http://localhost:8080/Game/combatMonstres",reponse =>
+        {document.getElementById("vainqueur").innerHTML = (reponse)})
+    }
 
 </script>
 
@@ -26,6 +30,9 @@
 <li>
     <ul><button onclick="gameVersus1()">Joueur 1</button></ul>
     <ul><button onclick="gameVersus2()">Joueur 2</button></ul>
+</li>
+<li>
+
 </li>
 
 </body>

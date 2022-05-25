@@ -26,6 +26,11 @@ public class GameController {
         Personnage monstre1 = new Personnage("monstre", 120, 120, 120, 120, 120, 120, 120);
         return Game.combat(heros, monstre1);
     }
+    @GetMapping("/combatMonstres/{ennemi}")
+    public String combatEnnemi (@RequestBody Personnage ennemi) {
+        Personnage heros = new Personnage("heros", 120, 120, 120, 120, 120, 120, 120);
+        return Game.combat(heros, ennemi);
+    }
 
 
     @GetMapping("/testGame")
