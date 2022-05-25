@@ -1,10 +1,9 @@
 package com.projetspring.WorldsOfLikes.beans;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Restauration {
@@ -14,6 +13,15 @@ public class Restauration {
     private int idResto;
     private String nomResto;
     private String adresseResto;
+
+    //ajouter plusieurs menus
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Menu> menutab = new ArrayList<>();
+
+    public void ajouterMenu(Menu menu){
+        menutab.add(menu);
+    }
+
 
     //Consctructors
     public Restauration() {
@@ -51,5 +59,13 @@ public class Restauration {
     }
     public void setAdresseResto(String adresseResto) {
         this.adresseResto = adresseResto;
+    }
+
+    public List<Menu> getMenutab() {
+        return menutab;
+    }
+
+    public void setMenutab(List<Menu> menutab) {
+        this.menutab = menutab;
     }
 }

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>menuPage</title>
+</head>
+<body>
+<button onclick="requeteGet()">menu</button>
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
+<script>
+
+    function requeteGet(){
+        $.get("http://localhost:8080/Delevery/recuperationEnBase",response =>
+        {
+        console.log(response[0])
+        console.log(typeof response) ;
+        console.log(response);
+
+        })
+    }
+
+</script>
+
+
+
+</body>
+</html>
