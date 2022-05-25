@@ -1,22 +1,19 @@
 package com.projetspring.WorldsOfLikes.controllers;
 
 import com.projetspring.WorldsOfLikes.beans.Form;
-import com.projetspring.WorldsOfLikes.beans.SocialNetwork;
 import com.projetspring.WorldsOfLikes.repositories.FormRepositoryInterface;
-import com.projetspring.WorldsOfLikes.repositories.NetworkRepositoryInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 
 
 @RestController
 @RequestMapping("/API")
 public class MainWebController {
+
     //Create DB
     @Autowired
     private FormRepositoryInterface formRepositoryInterface;
-    @Autowired
-    private NetworkRepositoryInterface networkRepositoryInterface;
+
     //Insert new registration
     @PostMapping("/registrer")
     public String registrer(@RequestBody Form form_register){
@@ -32,19 +29,16 @@ public class MainWebController {
 
     //Login
     @PostMapping("/login")
-    public int login(@RequestBody Form form_register){
+    public String login(@RequestBody Form form_register){
         Form connexion = formRepositoryInterface.findByEmail(form_register.getEmail());
         if(connexion == null){
-            return 0;
+            return "Bad Credentials";
         }
         else if(!connexion.getMotdepasse().equals(form_register.getMotdepasse())){
-            return 0;
+            return "Bad Password";
         }
         else{
-           /* SocialNetwork socialNetwork=form_register.getSocialNetwork();
-             socialNetwork.setLoggedIn(1);
-             networkRepositoryInterface.save(socialNetwork);*/
-            return connexion.getID();
+            return (""+connexion.getID());
         }
     }
 }

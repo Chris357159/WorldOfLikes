@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WorldOfLikes</title>
+</head>
+<body>
+<h1>World of likes</h1>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
+<script>
+    function gameVersus1(){
+        $.get("http://localhost:8080/Game/combatMonstres",reponse =>
+        {document.getElementById("vainqueur").innerHTML = (reponse)})
+    }
+    function gameVersus2(){
+        $.get("http://localhost:8080/Game/play",reponse => {
+        console.log("Requete en GET, j'ai reçu : "+reponse)})
+    }
+    function gameVersus(e){
+        $.get("http://localhost:8080/Game/combatMonstres",reponse =>
+        {document.getElementById("vainqueur").innerHTML = (reponse)})
+    }
+
+</script>
+
+<div>Liste des joueurs</div>
+<div id="vainqueur">Le résultat du combat est ici...</div>
+<li>
+    <ul><button onclick="gameVersus1()">Joueur 1</button></ul>
+    <ul><button onclick="gameVersus2()">Joueur 2</button></ul>
+</li>
+<li>
+
+</li>
+
+</body>
+</html>
