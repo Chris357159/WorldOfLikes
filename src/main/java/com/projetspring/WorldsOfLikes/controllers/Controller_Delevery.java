@@ -38,8 +38,8 @@ public class Controller_Delevery {
     @GetMapping("/ajoutMenuResto")
     public String ajoutMenuResto(){
         Restauration Resto = new Restauration("Resto B", "bb");
-        Menu menu1=  new Menu( "kebab",  7);
-        Menu menu2=  new Menu( "otacos",  10);
+        Menu menu1=  new Menu( "menu Child",  8);
+        Menu menu2=  new Menu( "menu Normal",  12);
         Resto.ajouterMenu(menu1);
         Resto.ajouterMenu(menu2);
         restoRepositoryInterface.save(Resto);
@@ -56,6 +56,14 @@ public class Controller_Delevery {
     //@PostMapping(value="/commandeDisplay",produces = "application/json")
     //public void commandeDisplay(@RequestBody ){}
 
+    //--------------pour récupérer tous les menus -----------//
+    @GetMapping("/getTousLesMenus")
+    public List <Menu> getTousLesMenus(){
+        List <Menu> m= menuRepositoryInterface.findAll();
+        return m;
+    }
+
+
 
 
 
@@ -69,7 +77,7 @@ public class Controller_Delevery {
 
            //new Menu
            Menu a= new Menu();
-           a.setId(m.getId());
+           a.setIdMenu(m.getIdMenu());
            a.setMenu(m.getMenu());
            a.setPrice(m.getPrice());
            menuList.add(a);

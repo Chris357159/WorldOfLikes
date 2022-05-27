@@ -6,7 +6,7 @@ import javax.persistence.*;
 public class Menu {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int idMenu;
 
     private String menu;
     private double price;
@@ -27,12 +27,12 @@ public class Menu {
     //get et set
 
 
-    public int getId() {
-        return id;
+    public int getIdMenu() {
+        return idMenu;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdMenu(int idMenu) {
+        this.idMenu = idMenu;
     }
 
 
@@ -57,7 +57,7 @@ public class Menu {
     @Override
     public String toString() {
         return "Menu{" +
-                "id=" + id +
+                "idMenu=" + idMenu +
                 ", menu='" + menu + '\'' +
                 ", price=" + price +
                 '}';
