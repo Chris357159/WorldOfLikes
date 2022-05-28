@@ -1,12 +1,25 @@
 package com.projetspring.WorldsOfLikes.beans;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+
+@Entity
 public class Equipment {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int ID;
     protected String nomEpee;
     protected int atqEpee;
     protected String nomArmure;
     protected int defArmure;
     protected String nomBottes;
     protected int vitBottes;
+
+
 
     public Equipment(String nomEpee, int atqEpee, String nomArmure, int defArmure, String nomBottes, int vitBottes) {
         this.nomEpee = nomEpee;
@@ -68,5 +81,18 @@ public class Equipment {
 
     public void setVitBottes(int vitBottes) {
         this.vitBottes = vitBottes;
+    }
+
+    @Override
+    public String toString() {
+        return "Equipment{" +
+                "nomEpee='" + nomEpee + '\'' +
+                ", atqEpee=" + atqEpee +
+                ", nomArmure='" + nomArmure + '\'' +
+                ", defArmure=" + defArmure +
+                ", nomBottes='" + nomBottes + '\'' +
+                ", vitBottes=" + vitBottes +
+                ", ID=" + ID +
+                '}';
     }
 }

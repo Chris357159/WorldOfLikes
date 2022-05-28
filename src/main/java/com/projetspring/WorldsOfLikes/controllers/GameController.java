@@ -2,8 +2,7 @@ package com.projetspring.WorldsOfLikes.controllers;
 
 
 import com.projetspring.WorldsOfLikes.beans.*;
-import com.projetspring.WorldsOfLikes.repositories.FormRepositoryInterface;
-import com.projetspring.WorldsOfLikes.repositories.GameRepositoryInterface;
+import com.projetspring.WorldsOfLikes.repositories.PersonnageRepositoryInterface;
 import com.projetspring.WorldsOfLikes.services.Game;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,28 +12,29 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/Game")
 public class GameController {
 
-    @Autowired
-    private FormRepositoryInterface formRepositoryInterface;
-
     //Create DB
     @Autowired
-    private GameRepositoryInterface gameRepositoryInterface;
+    private PersonnageRepositoryInterface personnageRepositoryInterface;
 
-    @GetMapping("/combatMonstres")
-    public String combatMonstres () {
+    @GetMapping("/ajoutPersonnages")
+    public String ajoutPersonnages () {
         Personnage heros = new Personnage("heros", 120, 120, 120, 120, 120, 120, 120);
-        Personnage monstre1 = new Personnage("monstre", 120, 120, 120, 120, 120, 120, 120);
-        return Game.combat(heros, monstre1);
+
+        return "OK";
     }
-    @GetMapping("/combatMonstres/{ennemi}")
+
+
+
+    @GetMapping("/ajoutCombatMonstres/{ennemi}")
     public String combatEnnemi (@RequestBody Personnage ennemi) {
         Personnage heros = new Personnage("heros", 120, 120, 120, 120, 120, 120, 120);
         return Game.combat(heros, ennemi);
     }
 
-
-    @GetMapping("/testGame")
-    public String testGame() {
-        return ("OK");
+    @GetMapping("/ajoutEquipPerso")
+    public String ajoutEquipPerso () {
+        Equipment epee = new Equipment("epee",120,"cotte de maille",120,"celerite",120);
+        return "OK";
     }
+
 }

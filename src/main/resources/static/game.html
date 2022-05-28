@@ -11,15 +11,15 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
 <script>
     function gameVersus1(){
-        $.get("http://localhost:8080/Game/combatMonstres",reponse =>
+        $.get("http://localhost:8080/Game/ajoutPersonnages",reponse =>
         {document.getElementById("vainqueur").innerHTML = (reponse)})
     }
     function gameVersus2(){
-        $.get("http://localhost:8080/Game/play",reponse => {
+        $.get("http://localhost:8080/Game/ajoutPersonnages",reponse => {
         console.log("Requete en GET, j'ai reçu : "+reponse)})
     }
     function gameVersus(e){
-        $.get("http://localhost:8080/Game/combatMonstres",reponse =>
+        $.get("http://localhost:8080/Game/ajoutCombatMonstres",reponse =>
         {document.getElementById("vainqueur").innerHTML = (reponse)})
     }
 

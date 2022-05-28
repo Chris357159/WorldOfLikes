@@ -1,9 +1,7 @@
 package com.projetspring.WorldsOfLikes.beans;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Arrays;
 
 
 @Entity
@@ -11,6 +9,7 @@ public class Personnage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int ID;
     protected String nom;
     protected int PointDeVieMax;
     protected int PointDeVie;
@@ -18,27 +17,25 @@ public class Personnage {
     protected int defense;
     protected int vitesse;
     public int mana;
-    private int or = 0;
+    private int gold = 0;
 
     //variable heros
     private int experience = 0;
     private int niveau = 1;
     private int coutMagie = 5;
-    protected Equipment[] equipement = new Equipment[3];
     private int puissMagique = 1;
     private int coeffXpAtq = 1;
     private int coeffXpDef = 1;
     private int coeffXpXp = 10;
     private int vol = 0;
 
-    private int ID;
 
     //Constructor
 
     public Personnage() {
     }
 
-    public Personnage(String nom, int pointDeVieMax, int pointDeVie, int attaque, int defense, int vitesse, int mana, int or) {
+    public Personnage(String nom, int pointDeVieMax, int pointDeVie, int attaque, int defense, int vitesse, int mana, int gold) {
         this.nom = nom;
         PointDeVieMax = pointDeVieMax;
         PointDeVie = pointDeVie;
@@ -46,7 +43,7 @@ public class Personnage {
         this.defense = defense;
         this.vitesse = vitesse;
         this.mana = mana;
-        this.or = or;
+        this.gold = gold;
     }
 
     public void actuNiveau() {
@@ -83,14 +80,6 @@ public class Personnage {
 
     public void setCoutMagie(int coutMagie) {
         this.coutMagie = coutMagie;
-    }
-
-    public Equipment[] getEquipement() {
-        return equipement;
-    }
-
-    public void setEquipement(Equipment[] equipement) {
-        this.equipement = equipement;
     }
 
     public int getPuissMagique() {
@@ -192,12 +181,12 @@ public class Personnage {
         this.mana = mana;
     }
 
-    public int getOr() {
-        return or;
+    public int getGold() {
+        return gold;
     }
 
-    public void setOr(int or) {
-        this.or = or;
+    public void setGold(int gold) {
+        this.gold = gold;
     }
     //Getters & Setters monstres
 
@@ -215,6 +204,29 @@ public class Personnage {
 
     public void setID(int ID) {
         this.ID = ID;
+    }
+
+    @Override
+    public String toString() {
+        return "Personnage{" +
+                "nom='" + nom + '\'' +
+                ", PointDeVieMax=" + PointDeVieMax +
+                ", PointDeVie=" + PointDeVie +
+                ", attaque=" + attaque +
+                ", defense=" + defense +
+                ", vitesse=" + vitesse +
+                ", mana=" + mana +
+                ", or=" + gold +
+                ", experience=" + experience +
+                ", niveau=" + niveau +
+                ", coutMagie=" + coutMagie +
+                ", puissMagique=" + puissMagique +
+                ", coeffXpAtq=" + coeffXpAtq +
+                ", coeffXpDef=" + coeffXpDef +
+                ", coeffXpXp=" + coeffXpXp +
+                ", vol=" + vol +
+                ", ID=" + ID +
+                '}';
     }
 }
 
