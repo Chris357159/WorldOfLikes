@@ -29,16 +29,16 @@ public class MainWebController {
 
     //Login
     @PostMapping("/login")
-    public String login(@RequestBody Form form_register){
+    public int login(@RequestBody Form form_register){
         Form connexion = formRepositoryInterface.findByEmail(form_register.getEmail());
         if(connexion == null){
-            return "Bad Credentials";
+            return 0;
         }
         else if(!connexion.getMotdepasse().equals(form_register.getMotdepasse())){
-            return "Bad Password";
+            return 0;
         }
         else{
-            return (""+connexion.getID());
+            return (connexion.getID());
         }
     }
 }
