@@ -15,26 +15,12 @@ public class Post {
     public Post() {
     }
 
-    public Post(String date, String content, short likeCount, short shareCount) {
-        this.date = date;
-        this.content = content;
-        this.likeCount = likeCount;
-        this.shareCount = shareCount;
-    }
-
-    public void setLikeCount(short likeCount) {
-        this.likeCount = likeCount;
-    }
-
-    public void setShareCount(short shareCount) {
-        this.shareCount = shareCount;
-    }
 
     public Post(String date, String content, int likeCount, int shareCount) {
         this.date = date;
         this.content = content;
-        this.likeCount = (short) likeCount;
-        this.shareCount = (short) shareCount;
+        this.likeCount = likeCount;
+        this.shareCount = shareCount;
     }
 
     public int getId() {
