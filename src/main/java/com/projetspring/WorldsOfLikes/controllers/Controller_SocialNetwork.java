@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/Network")
@@ -65,5 +66,13 @@ public class Controller_SocialNetwork {
     @GetMapping("/getAllUsers")
     public List<SocialNetwork> getAllUsers(){
         return networkRepositoryInterface.findAll();
+    }
+
+    @PostMapping("/sendRequest")
+    public SocialNetwork sendRequest(@RequestBody Auxiliaire4 auxiliaire4){
+        SocialNetwork socialNetwork=networkRepositoryInterface.findById(auxiliaire4.getId());
+        socialNetwork.getFriends().add(socialNetwork);
+        networkRepositoryInterface.save(socialNetwork);
+        return socialNetwork;
     }
 }

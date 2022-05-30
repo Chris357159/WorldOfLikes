@@ -23,10 +23,13 @@ public class SocialNetwork {
     @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private Set<SocialNetwork> friends;
 
+    public Set<SocialNetwork> getFriends() {
+        return friends;
+    }
 
-
-
-
+    public void setFriends(Set<SocialNetwork> friends) {
+        this.friends = friends;
+    }
 
     //constructeurs
    public SocialNetwork() {

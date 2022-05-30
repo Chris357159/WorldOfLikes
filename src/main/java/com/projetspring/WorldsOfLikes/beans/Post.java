@@ -9,8 +9,8 @@ public class Post {
     private int id;
     private String date;
     private String content;
-    private short likeCount;
-    private short shareCount;
+    private int likeCount;
+    private int shareCount;
 
     public Post() {
     }
@@ -66,7 +66,7 @@ public class Post {
     }
 
     public void setLikeCount(int likeCount) {
-        this.likeCount = (short) likeCount;
+        this.likeCount = likeCount;
     }
 
     public int getShareCount() {
@@ -74,7 +74,7 @@ public class Post {
     }
 
     public void setShareCount(int shareCount) {
-        this.shareCount = (short) shareCount;
+        this.shareCount = shareCount;
     }
 
     @Override
