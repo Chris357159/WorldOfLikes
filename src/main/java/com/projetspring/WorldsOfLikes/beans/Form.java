@@ -1,6 +1,10 @@
 package com.projetspring.WorldsOfLikes.beans;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Form {
@@ -10,8 +14,11 @@ public class Form {
     private int ID;
     private String email;
     private String motdepasse;
-    /*@OneToOne(fetch = FetchType.EAGER)
+    @JsonIgnoreProperties("login")
+    @OneToOne(fetch = FetchType.EAGER)
     private SocialNetwork socialNetwork;
+    ///
+
 
     public SocialNetwork getSocialNetwork() {
         return socialNetwork;
@@ -19,7 +26,15 @@ public class Form {
 
     public void setSocialNetwork(SocialNetwork socialNetwork) {
         this.socialNetwork = socialNetwork;
-    }*/
+    }
+
+    public ParametresUtilisateur getForm_parametresUtilisateurs() {
+        return form_parametresUtilisateurs;
+    }
+
+    public void setForm_parametresUtilisateurs(ParametresUtilisateur form_parametresUtilisateurs) {
+        this.form_parametresUtilisateurs = form_parametresUtilisateurs;
+    }
 
     @OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
     private ParametresUtilisateur form_parametresUtilisateurs;

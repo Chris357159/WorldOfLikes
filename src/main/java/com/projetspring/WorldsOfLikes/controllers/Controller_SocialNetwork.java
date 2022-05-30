@@ -1,7 +1,6 @@
 package com.projetspring.WorldsOfLikes.controllers;
 
-import com.projetspring.WorldsOfLikes.beans.Post;
-import com.projetspring.WorldsOfLikes.beans.SocialNetwork;
+import com.projetspring.WorldsOfLikes.beans.*;
 import com.projetspring.WorldsOfLikes.repositories.FormRepositoryInterface;
 import com.projetspring.WorldsOfLikes.repositories.NetworkRepositoryInterface;
 import com.projetspring.WorldsOfLikes.repositories.PostRepositoryInterface;
@@ -20,41 +19,42 @@ public class Controller_SocialNetwork {
     @Autowired
     private PostRepositoryInterface postRepositoryInterface;
     @PostMapping("/ModifyUsername")
-    public SocialNetwork addUsername(@RequestBody SocialNetwork socialNetwork){
-    SocialNetwork socialNetwork1=networkRepositoryInterface.findById(socialNetwork.getId());
-    socialNetwork1.setUsername(socialNetwork.getUsername());
+    public SocialNetwork addUsername(@RequestBody Auxliaire1 auxliaire1){
+    SocialNetwork socialNetwork1=networkRepositoryInterface.findById(auxliaire1.getId());
+    socialNetwork1.setUsername(auxliaire1.getUsername());
     networkRepositoryInterface.save(socialNetwork1);
         return socialNetwork1;
     }
-    @PostMapping("/sendUsername")
-    public SocialNetwork sendUsername(@RequestBody int id)
+    @GetMapping("/sendUsername/{id}")
+    public SocialNetwork sendUsername(@PathVariable int id)
     {
         return networkRepositoryInterface.findById(id);
     }
 
-    @PostMapping("/sendUserProfilePhoto")
-    public SocialNetwork sendUserProfilePhoto(@RequestBody int id){
+    @GetMapping("/sendUserProfilePhoto/{id}")
+    public SocialNetwork sendUserProfilePhoto(@PathVariable int id){
         return networkRepositoryInterface.findById(id);
     }
     @PostMapping("/ModifyUserProfilePhoto")
-    public String ModifyUsernamePhoto(@RequestBody SocialNetwork socialNetwork){
-        SocialNetwork socialNetwork1=networkRepositoryInterface.findById(socialNetwork.getId());
-        socialNetwork1.setUserPhoto(socialNetwork.getUserPhoto());
+    public SocialNetwork ModifyUsernamePhoto(@RequestBody Auxiliaire2 auxliaire2){
+        SocialNetwork socialNetwork1=networkRepositoryInterface.findById(auxliaire2.getId());
+        socialNetwork1.setUserPhoto(auxliaire2.getUserPhoto());
         networkRepositoryInterface.save(socialNetwork1);
-        System.out.println(socialNetwork);
-        return "Ok";
+        return socialNetwork1;
     }
     @PostMapping("/sendPosts")
-    public Post sendPosts(@RequestBody Post post){
+    public Post sendPosts(@RequestBody Auxliaire3 auxliaire3){
+        Post post=new Post(auxliaire3.getDate(),auxliaire3.getContent(),auxliaire3.getLikeCount(),auxliaire3.getShareCount());
         postRepositoryInterface.save(post);
         SocialNetwork socialNetwork=networkRepositoryInterface.findById(1);
         socialNetwork.ajouterPost(post);
         networkRepositoryInterface.save(socialNetwork);
         return post;
     }
-    @PostMapping("/getPosts")
-    public List<Post>getPosts(@RequestBody int id){
+    @GetMapping("/getPosts/{id}")
+    public List<Post> getPosts(@PathVariable int id){
         SocialNetwork socialNetwork=networkRepositoryInterface.findById(id);
+        //Post post=socialNetwork.getPosts().get(0);
         return socialNetwork.getPosts();
     }
     @GetMapping("/recupAll")
@@ -62,4 +62,8 @@ public class Controller_SocialNetwork {
         return networkRepositoryInterface.findById(1);
     }
 
+    @GetMapping("/getAllUsers")
+    public List<SocialNetwork> getAllUsers(){
+        return networkRepositoryInterface.findAll();
+    }
 }
