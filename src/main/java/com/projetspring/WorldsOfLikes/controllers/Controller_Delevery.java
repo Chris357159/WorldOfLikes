@@ -37,9 +37,9 @@ public class Controller_Delevery {
 
     @GetMapping("/ajoutMenuResto")
     public String ajoutMenuResto(){
-        Restauration Resto = new Restauration("Resto B", "bb");
-        Menu menu1=  new Menu( "menu Child",  8);
-        Menu menu2=  new Menu( "menu Normal",  12);
+        Restauration Resto = new Restauration("Resto a", "aa");
+        Menu menu1=  new Menu( "menu Kebab",  9);
+        Menu menu2=  new Menu( "menu Tacos",  8);
         Resto.ajouterMenu(menu1);
         Resto.ajouterMenu(menu2);
         restoRepositoryInterface.save(Resto);
