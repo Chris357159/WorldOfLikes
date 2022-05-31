@@ -3,7 +3,6 @@ package com.projetspring.WorldsOfLikes.beans;
 import javax.persistence.*;
 
 
-
 @Entity
 public class Personnage {
 
@@ -29,9 +28,12 @@ public class Personnage {
     private int coeffXpXp = 10;
     private int vol = 0;
 
-    @OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Armes perso_equip;
 
+   /* public void ajouterValeurATK(Armes armes) {
+        perso_equip.add(armes);
+    }*/
 
     //Constructor
     public Personnage() {
