@@ -30,10 +30,10 @@ public class Personnage {
     private int vol = 0;
 
     @OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
-    private Equipment perso_equip;
+    private Armes perso_equip;
+
 
     //Constructor
-
     public Personnage() {
     }
 
@@ -47,6 +47,7 @@ public class Personnage {
         this.mana = mana;
         this.gold = gold;
     }
+
 
     public void actuNiveau() {
         int atqBase = this.getAttaque();
@@ -206,6 +207,14 @@ public class Personnage {
 
     public void setID(int ID) {
         this.ID = ID;
+    }
+
+    public Equipment getPerso_equip() {
+        return perso_equip;
+    }
+
+    public void setPerso_equip(Armes perso_equip) {
+        this.perso_equip = perso_equip;
     }
 
     @Override

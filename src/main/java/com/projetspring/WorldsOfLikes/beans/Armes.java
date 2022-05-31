@@ -21,4 +21,13 @@ public class Armes extends Equipment {
     public void setValeurATK(int valeurATK) {
         this.valeurATK = valeurATK;
     }
+
+    @Override
+    public String toString() {
+        return "Armes{" +
+                "valeurATK=" + valeurATK +
+                ", ID=" + ID +
+                ", nom='" + nom + '\'' +
+                '}';
+    }
 }

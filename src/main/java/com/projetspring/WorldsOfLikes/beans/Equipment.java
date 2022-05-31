@@ -32,7 +32,8 @@ public class Equipment {
     @Override
     public String toString() {
         return "Equipment{" +
-                "nom='" + nom + '\'' +
+                "ID=" + ID +
+                ", nom='" + nom + '\'' +
                 '}';
     }
 }
