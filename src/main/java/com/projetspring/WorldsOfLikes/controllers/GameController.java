@@ -2,6 +2,7 @@ package com.projetspring.WorldsOfLikes.controllers;
 
 
 import com.projetspring.WorldsOfLikes.beans.*;
+import com.projetspring.WorldsOfLikes.repositories.ArmesRepositoryInterface;
 import com.projetspring.WorldsOfLikes.repositories.EquipmentRepositoryInterface;
 import com.projetspring.WorldsOfLikes.repositories.PersonnageRepositoryInterface;
 import com.projetspring.WorldsOfLikes.services.Game;
@@ -18,6 +19,8 @@ public class GameController {
     private PersonnageRepositoryInterface personnageRepositoryInterface;
     @Autowired
     private EquipmentRepositoryInterface equipmentRepositoryInterface;
+    @Autowired
+    private ArmesRepositoryInterface armesRepositoryInterface;
 
     // Ajout equipement
     @GetMapping("/ajoutEquipmentArmes")
@@ -36,6 +39,7 @@ public class GameController {
         equipmentRepositoryInterface.save(epeeAdminTKT);
         return "OK";
     }
+
     @GetMapping("/ajoutEquipmentArmures")
     public String ajoutEquipmentArmures() {
         Armures armuresBronze = new Armures("Armures Bronze");
@@ -52,6 +56,7 @@ public class GameController {
         equipmentRepositoryInterface.save(armuresAdmin);
         return "OK";
     }
+
     @GetMapping("/ajoutEquipmentAccessoires")
     public String ajoutEquipmentAccessoires() {
         Accessoires accessoiresBronze = new Accessoires("Bottes Bronze");
@@ -69,12 +74,24 @@ public class GameController {
         return "OK";
     }
 
+    @GetMapping("/ajoutAdmin")
+    public String ajoutAdmin() {
+        Personnage p = personnageRepositoryInterface.findById(1);
+        Armes a = armesRepositoryInterface.findById(4);
+        p.setPerso_equip(a);
+        personnageRepositoryInterface.save(p);
+        return "OK";
+    }
 
+    @GetMapping("/recupAdmin")
+    public Personnage recupAdmin() {
+        return personnageRepositoryInterface.findById(1);
+    }
 
     @GetMapping("/ajoutPersonnages")
     public String ajoutPersonnages() {
         Personnage heros = new Personnage("heros", 100, 100, 10, 100, 100, 100, 1000);
-
+        personnageRepositoryInterface.save(heros);
         return "OK";
     }
 

@@ -1,10 +1,10 @@
 package com.projetspring.WorldsOfLikes.beans;
 
-public class Auxliaire1 {
+public class Auxiliaire1 {
     private int id;
     private String username;
 
-    public Auxliaire1() {
+    public Auxiliaire1() {
     }
 
     public int getId() {

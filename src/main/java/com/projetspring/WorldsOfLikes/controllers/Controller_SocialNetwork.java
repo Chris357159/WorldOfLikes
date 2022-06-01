@@ -7,8 +7,7 @@ import com.projetspring.WorldsOfLikes.repositories.PostRepositoryInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @RestController
 @RequestMapping("/Network")
@@ -19,13 +18,15 @@ public class Controller_SocialNetwork {
     private FormRepositoryInterface formRepositoryInterface;
     @Autowired
     private PostRepositoryInterface postRepositoryInterface;
+
     @PostMapping("/ModifyUsername")
-    public SocialNetwork addUsername(@RequestBody Auxliaire1 auxliaire1){
-    SocialNetwork socialNetwork1=networkRepositoryInterface.findById(auxliaire1.getId());
-    socialNetwork1.setUsername(auxliaire1.getUsername());
-    networkRepositoryInterface.save(socialNetwork1);
-        return socialNetwork1;
+    public SocialNetwork addUsername(@RequestBody Auxiliaire1 auxiliaire1){
+    SocialNetwork socialNetwork=networkRepositoryInterface.findByLogin(formRepositoryInterface.findById(auxiliaire1.getId()));
+    socialNetwork.setUsername(auxiliaire1.getUsername());
+    networkRepositoryInterface.save(socialNetwork);
+        return socialNetwork;
     }
+
     @GetMapping("/sendUsername/{id}")
     public SocialNetwork sendUsername(@PathVariable int id)
     {
@@ -36,31 +37,29 @@ public class Controller_SocialNetwork {
     public SocialNetwork sendUserProfilePhoto(@PathVariable int id){
         return networkRepositoryInterface.findById(id);
     }
+
     @PostMapping("/ModifyUserProfilePhoto")
     public SocialNetwork ModifyUsernamePhoto(@RequestBody Auxiliaire2 auxliaire2){
-        SocialNetwork socialNetwork1=networkRepositoryInterface.findById(auxliaire2.getId());
-        socialNetwork1.setUserPhoto(auxliaire2.getUserPhoto());
-        networkRepositoryInterface.save(socialNetwork1);
-        return socialNetwork1;
+        SocialNetwork socialNetwork=networkRepositoryInterface.findByLogin(formRepositoryInterface.findById(auxliaire2.getId()));
+       // SocialNetwork socialNetwork1=networkRepositoryInterface.findById(auxliaire2.getId());
+        socialNetwork.setUserPhoto(auxliaire2.getUserPhoto());
+        networkRepositoryInterface.save(socialNetwork);
+        return socialNetwork;
     }
+
     @PostMapping("/sendPosts")
-    public Post sendPosts(@RequestBody Auxliaire3 auxliaire3){
-        Post post=new Post(auxliaire3.getDate(),auxliaire3.getContent(),auxliaire3.getLikeCount(),auxliaire3.getShareCount());
+    public Post sendPosts(@RequestBody Auxiliaire3 auxiliaire3){
+        Post post=new Post(auxiliaire3.getDate(), auxiliaire3.getContent(), auxiliaire3.getLikeCount(), auxiliaire3.getShareCount());
         postRepositoryInterface.save(post);
-        SocialNetwork socialNetwork=networkRepositoryInterface.findById(1);
+        SocialNetwork socialNetwork=networkRepositoryInterface.findByLogin(formRepositoryInterface.findById(auxiliaire3.getId()));
         socialNetwork.ajouterPost(post);
         networkRepositoryInterface.save(socialNetwork);
         return post;
     }
+
     @GetMapping("/getPosts/{id}")
-    public List<Post> getPosts(@PathVariable int id){
-        SocialNetwork socialNetwork=networkRepositoryInterface.findById(id);
-        //Post post=socialNetwork.getPosts().get(0);
-        return socialNetwork.getPosts();
-    }
-    @GetMapping("/recupAll")
-    public SocialNetwork recupAll(){
-        return networkRepositoryInterface.findById(1);
+    public SocialNetwork getPosts(@PathVariable int id){
+        return networkRepositoryInterface.findById(id);
     }
 
     @GetMapping("/getAllUsers")
@@ -69,10 +68,30 @@ public class Controller_SocialNetwork {
     }
 
     @PostMapping("/sendRequest")
-    public SocialNetwork sendRequest(@RequestBody Auxiliaire4 auxiliaire4){
+    public String sendRequest(@RequestBody Auxiliaire4 auxiliaire4){
         SocialNetwork socialNetwork=networkRepositoryInterface.findById(auxiliaire4.getId());
-        socialNetwork.getFriends().add(socialNetwork);
+        SocialNetwork  socialNetwork1=networkRepositoryInterface.findById(auxiliaire4.getIdFollower());
+        socialNetwork.getSubscriptions().add(socialNetwork1);
+        socialNetwork1.getFollows().add(socialNetwork);
         networkRepositoryInterface.save(socialNetwork);
-        return socialNetwork;
+        networkRepositoryInterface.save(socialNetwork1);
+        return "Ok";
     }
+
+    @GetMapping("/getSubcriptions/{id}")
+    public Set<SocialNetwork> getSubcriptions(@PathVariable int id){
+        return networkRepositoryInterface.findById(id).getSubscriptions();
+    }
+   @GetMapping("/getFollows/{id}")
+    public Set<SocialNetwork> getFollows(@PathVariable int id){
+        return networkRepositoryInterface.findById(id).getFollows();
+    }
+    @GetMapping("/getSubscriptionsPost/{id}")
+    public Set<SocialNetwork> getSubscriptionsPost(@PathVariable int id){
+
+        Set<SocialNetwork> socialNetworkSet;
+        socialNetworkSet=networkRepositoryInterface.findById(id).getSubscriptions();
+        return socialNetworkSet;
+    }
+
 }
