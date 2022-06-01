@@ -11,7 +11,6 @@ public class Post {
     private String content;
     private int likeCount;
     private int shareCount;
-
     public Post() {
     }
 

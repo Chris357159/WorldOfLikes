@@ -1,11 +1,13 @@
 package com.projetspring.WorldsOfLikes.controllers;
 
 
-import com.projetspring.WorldsOfLikes.beans.Menu;
-import com.projetspring.WorldsOfLikes.beans.Restauration;
+import com.projetspring.WorldsOfLikes.beans.*;
 
+import com.projetspring.WorldsOfLikes.repositories.FormRepositoryInterface;
 import com.projetspring.WorldsOfLikes.repositories.MenuRepositoryInterface;
+import com.projetspring.WorldsOfLikes.repositories.PostRepositoryInterface;
 import com.projetspring.WorldsOfLikes.repositories.RestoRepositoryInterface;
+import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +18,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/Delevery")
-@CrossOrigin(origins = {"http://localhost:3000"})
+@CrossOrigin("*")
 public class Controller_Delevery {
 
     //Create DB
@@ -26,8 +28,15 @@ public class Controller_Delevery {
     @Autowired
     private MenuRepositoryInterface menuRepositoryInterface;
 
+    @Autowired
+   private FormRepositoryInterface formRepositoryInterface; //pour get UserId lors de commande
 
 
+    @GetMapping("/getUserId/{id}")
+    public Form getUserId(@PathVariable int id)
+    {
+        return formRepositoryInterface.findById(id);
+    }
 
     @GetMapping("/ajoutResto")
     public String ajoutResto(){
@@ -67,7 +76,13 @@ public class Controller_Delevery {
 
 
 
-    @GetMapping("/commandeDisplay")
+
+
+
+
+
+
+    /*@GetMapping("/commandeDisplay")
     public List <Menu>commandeDisplay(){
        int [] nbr= {1,4};
        ArrayList<Restauration> restoList = new ArrayList<>();
@@ -86,7 +101,7 @@ public class Controller_Delevery {
        return menuList;
 
 
-    }
+    }*/
 
 
 

@@ -14,6 +14,7 @@ public class Form {
     private int ID;
     private String email;
     private String motdepasse;
+    private String adresse;
 
     @JsonIgnoreProperties("login")
     @OneToOne(fetch = FetchType.EAGER)
@@ -52,6 +53,14 @@ public class Form {
     }
     public void setMotdepasse(String motdepasse) {
         this.motdepasse = motdepasse;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
     }
 
     // Get and Set class
