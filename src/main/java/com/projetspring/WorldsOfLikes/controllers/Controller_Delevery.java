@@ -11,6 +11,7 @@ import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.criteria.From;
 import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,11 +33,27 @@ public class Controller_Delevery {
    private FormRepositoryInterface formRepositoryInterface; //pour get UserId lors de commande
 
 
+
+
     @GetMapping("/getUserId/{id}")
     public Form getUserId(@PathVariable int id)
     {
         return formRepositoryInterface.findById(id);
     }
+
+    //si user a déjà une adresse, on affirme, sinon ajouter son adresse dans la database
+
+    @PostMapping("/addUserAdresse")
+    public Form addUserAdresse(@RequestBody UserAdresse u){
+
+        Form form = formRepositoryInterface.findById(u.getId());
+        form.setAdresse(u.getAdresse());
+        formRepositoryInterface.save(form);
+        return form;
+
+    }
+
+
 
     @GetMapping("/ajoutResto")
     public String ajoutResto(){

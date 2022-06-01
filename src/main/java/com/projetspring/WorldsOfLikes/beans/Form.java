@@ -86,4 +86,7 @@ public class Form {
     public void setForm_personnage(Personnage form_personnage) {
         this.form_personnage = form_personnage;
     }
+
+    public void save(UserAdresse u) {
+    }
 }
