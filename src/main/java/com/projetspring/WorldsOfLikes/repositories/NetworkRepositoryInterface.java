@@ -10,5 +10,7 @@ public interface NetworkRepositoryInterface extends JpaRepository<SocialNetwork,
 String findUsernameById(int id);
 SocialNetwork findById(int id);
 List<SocialNetwork> findAll();
+SocialNetwork findByLogin(Form login);
+SocialNetwork findByIsLogged(int binary);
 
 }

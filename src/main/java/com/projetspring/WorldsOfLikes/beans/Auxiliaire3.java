@@ -1,12 +1,23 @@
 package com.projetspring.WorldsOfLikes.beans;
 
-public class Auxliaire3 {
+public class Auxiliaire3 {
+    private int id;
     private String date;
     private String content;
     private int likeCount;
     private int shareCount;
 
-    public Auxliaire3() {
+
+
+    public Auxiliaire3() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getDate() {
@@ -44,7 +55,8 @@ public class Auxliaire3 {
     @Override
     public String toString() {
         return "Auxliaire3{" +
-                "date='" + date + '\'' +
+                "id=" + id +
+                ", date='" + date + '\'' +
                 ", content='" + content + '\'' +
                 ", likeCount=" + likeCount +
                 ", shareCount=" + shareCount +

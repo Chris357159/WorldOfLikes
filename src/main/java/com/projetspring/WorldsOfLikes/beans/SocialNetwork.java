@@ -1,12 +1,14 @@
 package com.projetspring.WorldsOfLikes.beans;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-
+@JsonIgnoreProperties({"follows","subscriptions","posts"})
 @Entity
 public class SocialNetwork {
     @Id
@@ -14,37 +16,46 @@ public class SocialNetwork {
     private int id;
     private String username;
     private String userPhoto;
+    private int isLogged;
     @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    private List<Post>posts=new ArrayList<>();
-    @JsonIgnoreProperties("socialNetwork")
+    private List<Post>posts;
     @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private Form login;
-    private int isLoggedIn;
     @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    private Set<SocialNetwork> friends;
+    private Set<SocialNetwork> subscriptions;
+    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    private Set<SocialNetwork> follows;
 
-    public Set<SocialNetwork> getFriends() {
-        return friends;
-    }
-
-    public void setFriends(Set<SocialNetwork> friends) {
-        this.friends = friends;
-    }
 
     //constructeurs
-   public SocialNetwork() {
-   }
-    public SocialNetwork(String username,int isLoggedIn) {
+    public SocialNetwork() {
+    }
+    public SocialNetwork(String username,int isLogged) {
         this.username = username;
-        this.isLoggedIn = isLoggedIn;
+        this.isLogged = isLogged;
     }
     //getteurs/setteurs
-    public int getIsLoggedIn() {
-        return isLoggedIn;
+    public Set<SocialNetwork> getFollows() {
+        return follows;
     }
 
-    public void setIsLoggedIn(int isLoggedIn) {
-        this.isLoggedIn = isLoggedIn;
+    public void setFollows(Set<SocialNetwork> follows) {
+        this.follows = follows;
+    }
+    public Set<SocialNetwork> getSubscriptions() {
+        return subscriptions;
+    }
+
+    public void setSubscriptions(Set<SocialNetwork> subscriptions) {
+        this.subscriptions = subscriptions;
+    }
+
+    public int getIsLogged() {
+        return isLogged;
+    }
+
+    public void setIsLogged(int isLogged) {
+        this.isLogged = isLogged;
     }
     public Form getLogin() {
         return login;
@@ -61,11 +72,11 @@ public class SocialNetwork {
         this.posts = posts;
     }
     public int isLoggedIn() {
-        return isLoggedIn;
+        return isLogged;
     }
 
     public void setLoggedIn(int loggedIn) {
-        isLoggedIn = loggedIn;
+        isLogged = loggedIn;
     }
 
     public String getUserPhoto() {
