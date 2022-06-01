@@ -14,40 +14,27 @@ public class Form {
     private int ID;
     private String email;
     private String motdepasse;
+
     @JsonIgnoreProperties("login")
     @OneToOne(fetch = FetchType.EAGER)
     private SocialNetwork socialNetwork;
-    ///
-
-
-    public SocialNetwork getSocialNetwork() {
-        return socialNetwork;
-    }
-
-    public void setSocialNetwork(SocialNetwork socialNetwork) {
-        this.socialNetwork = socialNetwork;
-    }
-
-    public ParametresUtilisateur getForm_parametresUtilisateurs() {
-        return form_parametresUtilisateurs;
-    }
-
-    public void setForm_parametresUtilisateurs(ParametresUtilisateur form_parametresUtilisateurs) {
-        this.form_parametresUtilisateurs = form_parametresUtilisateurs;
-    }
 
     @OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
     private ParametresUtilisateur form_parametresUtilisateurs;
 
+    @OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+    private Personnage form_personnage;
+
     //Consctructors
     public Form() {
     }
+
     public Form(String email, String motdepasse) {
         this.email = email;
         this.motdepasse = motdepasse;
     }
 
-    //Get/Set
+    //Get and Set attribute
     public int getID() {
         return ID;
     }
@@ -65,5 +52,29 @@ public class Form {
     }
     public void setMotdepasse(String motdepasse) {
         this.motdepasse = motdepasse;
+    }
+
+    // Get and Set class
+    public SocialNetwork getSocialNetwork() {
+        return socialNetwork;
+    }
+
+    public void setSocialNetwork(SocialNetwork socialNetwork) {
+        this.socialNetwork = socialNetwork;
+    }
+
+    public ParametresUtilisateur getForm_parametresUtilisateurs() {
+        return form_parametresUtilisateurs;
+    }
+
+    public void setForm_parametresUtilisateurs(ParametresUtilisateur form_parametresUtilisateurs) {
+        this.form_parametresUtilisateurs = form_parametresUtilisateurs;
+    }
+
+    public Personnage getForm_personnage() {
+        return form_personnage;
+    }
+    public void setForm_personnage(Personnage form_personnage) {
+        this.form_personnage = form_personnage;
     }
 }
