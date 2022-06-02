@@ -21,4 +21,13 @@ public class Accessoires extends Equipment {
     public void setValeurVIT(int valeurVIT) {
         this.valeurVIT = valeurVIT;
     }
+
+    @Override
+    public String toString() {
+        return "Accessoires{" +
+                "valeurVIT=" + valeurVIT +
+                ", ID=" + ID +
+                ", nom='" + nom + '\'' +
+                '}';
+    }
 }
