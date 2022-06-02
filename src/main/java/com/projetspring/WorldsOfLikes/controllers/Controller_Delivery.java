@@ -3,24 +3,18 @@ package com.projetspring.WorldsOfLikes.controllers;
 
 import com.projetspring.WorldsOfLikes.beans.*;
 
-import com.projetspring.WorldsOfLikes.repositories.FormRepositoryInterface;
+import com.projetspring.WorldsOfLikes.repositories.UserDataRepositoryInterface;
 import com.projetspring.WorldsOfLikes.repositories.MenuRepositoryInterface;
-import com.projetspring.WorldsOfLikes.repositories.PostRepositoryInterface;
 import com.projetspring.WorldsOfLikes.repositories.RestoRepositoryInterface;
-import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.criteria.From;
-import java.sql.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
 @RequestMapping("/Delevery")
 @CrossOrigin("*")
-public class Controller_Delevery {
+public class Controller_Delivery {
 
     //Create DB
     @Autowired
@@ -30,26 +24,26 @@ public class Controller_Delevery {
     private MenuRepositoryInterface menuRepositoryInterface;
 
     @Autowired
-   private FormRepositoryInterface formRepositoryInterface; //pour get UserId lors de commande
+   private UserDataRepositoryInterface userDataRepositoryInterface; //pour get UserId lors de commande
 
 
 
 
     @GetMapping("/getUserId/{id}")
-    public Form getUserId(@PathVariable int id)
+    public UserData getUserId(@PathVariable int id)
     {
-        return formRepositoryInterface.findById(id);
+        return userDataRepositoryInterface.findById(id);
     }
 
     //si user a déjà une adresse, on affirme, sinon ajouter son adresse dans la database
 
     @PostMapping("/addUserAdresse")
-    public Form addUserAdresse(@RequestBody UserAdresse u){
+    public UserData addUserAdresse(@RequestBody UserAdresse u){
 
-        Form form = formRepositoryInterface.findById(u.getId());
-        form.setAdresse(u.getAdresse());
-        formRepositoryInterface.save(form);
-        return form;
+        UserData userData = userDataRepositoryInterface.findById(u.getId());
+        userData.setAdresse(u.getAdresse());
+        userDataRepositoryInterface.save(userData);
+        return userData;
 
     }
 
@@ -63,9 +57,9 @@ public class Controller_Delevery {
 
     @GetMapping("/ajoutMenuResto")
     public String ajoutMenuResto(){
-        Restauration Resto = new Restauration("Resto a", "aa");
-        Menu menu1=  new Menu( "menu Kebab",  9);
-        Menu menu2=  new Menu( "menu Tacos",  8);
+        Restauration Resto = new Restauration("Resto b", "bb");
+        Menu menu1=  new Menu( "menu Pizza",  15);
+        Menu menu2=  new Menu( "menu Tacos",  7);
         Resto.ajouterMenu(menu1);
         Resto.ajouterMenu(menu2);
         restoRepositoryInterface.save(Resto);

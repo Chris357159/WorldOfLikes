@@ -3,11 +3,9 @@ package com.projetspring.WorldsOfLikes.beans;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
-public class Form {
+public class UserData {
     //Attributes
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,19 +16,23 @@ public class Form {
 
     @JsonIgnoreProperties("login")
     @OneToOne(fetch = FetchType.EAGER)
-    private SocialNetwork socialNetwork;
-
+    private UserProfile userProfile;
     @OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
     private ParametresUtilisateur form_parametresUtilisateurs;
-
     @OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
     private Personnage form_personnage;
 
     //Consctructors
-    public Form() {
+    public UserData() {
     }
 
-    public Form(String email, String motdepasse) {
+    public UserData(String email, String motdepasse, String adresse) {
+        this.email = email;
+        this.motdepasse = motdepasse;
+        this.adresse = adresse;
+    }
+
+    public UserData(String email, String motdepasse) {
         this.email = email;
         this.motdepasse = motdepasse;
     }
@@ -64,12 +66,12 @@ public class Form {
     }
 
     // Get and Set class
-    public SocialNetwork getSocialNetwork() {
-        return socialNetwork;
+    public UserProfile getSocialNetwork() {
+        return userProfile;
     }
 
-    public void setSocialNetwork(SocialNetwork socialNetwork) {
-        this.socialNetwork = socialNetwork;
+    public void setSocialNetwork(UserProfile userProfile) {
+        this.userProfile = userProfile;
     }
 
     public ParametresUtilisateur getForm_parametresUtilisateurs() {

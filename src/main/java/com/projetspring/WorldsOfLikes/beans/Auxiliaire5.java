@@ -1,10 +1,10 @@
 package com.projetspring.WorldsOfLikes.beans;
 
-public class Auxliaire5 {
+public class Auxiliaire5 {
     private String monEmail;
     private String monMotdepasse;
 
-    public Auxliaire5() {}
+    public Auxiliaire5() {}
 
     public String getMonEmail() {
         return monEmail;

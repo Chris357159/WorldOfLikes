@@ -19,7 +19,7 @@ public class ParametresUtilisateur {
     }
 
     @OneToOne(fetch = FetchType.EAGER)
-    private Form form_parametresUtilisateur = new Form();
+    private UserData userData_parametresUtilisateur = new UserData();
 
     public int getID() {
         return ID;
