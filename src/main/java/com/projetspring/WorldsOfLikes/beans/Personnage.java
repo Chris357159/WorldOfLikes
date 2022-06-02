@@ -82,8 +82,11 @@ public class Personnage {
         this.setVitesse(vitBase + 50 * (this.getNiveau() - nivBase));
     }
 
-
-    //Getters and Setters heros
+    public Personnage(String nom, int gold) {
+        this.nom = nom;
+        this.gold = gold;
+    }
+//Getters and Setters heros
 
     public int getUserData() {
         return userData;

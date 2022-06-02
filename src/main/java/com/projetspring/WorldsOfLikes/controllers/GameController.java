@@ -5,6 +5,7 @@ import com.projetspring.WorldsOfLikes.beans.*;
 import com.projetspring.WorldsOfLikes.repositories.ArmesRepositoryInterface;
 import com.projetspring.WorldsOfLikes.repositories.EquipmentRepositoryInterface;
 import com.projetspring.WorldsOfLikes.repositories.PersonnageRepositoryInterface;
+import com.projetspring.WorldsOfLikes.repositories.UserDataRepositoryInterface;
 import com.projetspring.WorldsOfLikes.services.Game;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +24,8 @@ public class GameController {
     private EquipmentRepositoryInterface equipmentRepositoryInterface;
     @Autowired
     private ArmesRepositoryInterface armesRepositoryInterface;
-
+@Autowired
+private UserDataRepositoryInterface userDataRepositoryInterface;
     // Ajout equipement
     @GetMapping("/ajoutEquipmentArmes")
     public String ajoutEquipmentArmes() {
@@ -97,15 +99,24 @@ public class GameController {
         return "OK";
     }
 
-    @GetMapping("/ajoutCombatMonstres/{ennemi}")
-    public String combatEnnemi(@RequestBody Personnage ennemi) {
-        Personnage heros = new Personnage("heros", 100, 100, 10, 100, 100, 100, 1000);
-        return Game.combat(heros, ennemi);
+    @GetMapping("/combatMonstres/{id_ennemi}/{id}")
+    public String combatEnnemi(@PathVariable int id_ennemi,@PathVariable int id) {
+
+       int idd=userDataRepositoryInterface.findById(id).getForm_personnage().getID();
+        String resutl=Game.combat( personnageRepositoryInterface.findById(idd), personnageRepositoryInterface.findById(id_ennemi));
+
+        return resutl; }
+
+    @GetMapping("/getEnnemi/{id}")
+    public String getEnnemi(@PathVariable int id){
+        return combatEnnemi(id,1);
+
     }
+
+
     @GetMapping("/envoiData")
     public List<Personnage> envoiData(){
         return personnageRepositoryInterface.findAll();
     }
-
 
 }

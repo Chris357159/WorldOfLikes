@@ -17,13 +17,13 @@ public class Game {
                 if (monstre.getPointDeVie() <= 0) {
                     gains(heros, monstre);
                     vainqueur = heros.getNom();
-                    return "Le vainqueur est " + vainqueur+".";
+                    return ("Le vainqueur est " + vainqueur+".");
                 }
                 vie(heros, monstre);
                 taper(monstre, heros);
                 if (heros.getPointDeVie() <= 0) {
                     vainqueur = monstre.getNom();
-                    return "Vous avez perdu.";
+                    return ("Vous avez perdu.");
                 }
             }
         } else {
@@ -33,17 +33,17 @@ public class Game {
                 if (heros.getPointDeVie() <= 0) {
                     gains(heros, monstre);
                     vainqueur = monstre.getNom();
-                    return "Vous avez perdu.";
+                    return ("Vous avez perdu.");
                 }
                 vie(heros, monstre);
                 taper(heros, monstre);
                 if (monstre.getPointDeVie() <= 0) {
                     vainqueur = heros.getNom();
-                    return "Le vainqueur est " + heros.getNom()+".";
+                    return ("Le vainqueur est " + heros.getNom()+".");
                 }
             }
         }
-        return "";
+        return ("");
     }
 
 

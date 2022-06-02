@@ -100,13 +100,13 @@ public class Controller_UserProfile {
        Post post= postRepositoryInterface.findById(auxiliaire6.getId());
        UserProfile userProfile = userProfileRepositoryInterface.findById(auxiliaire6.getIdLogin());
         int likeCount=0;
-        int likeGlobal= userProfile.getLikes()+1;
+        int likeGlobal= userProfile.getLikes()+10;
        if(auxiliaire6.getIsLike()==1){
-           likeCount=post.getLikeCount()+1;
+           likeCount=post.getLikeCount()+10;
            userProfile.setLikes(likeGlobal);
        }
        else {
-           likeCount=post.getLikeCount()-1;
+           likeCount=post.getLikeCount()-10;
        }
        post.setLikeCount(likeCount);
        postRepositoryInterface.save(post);
