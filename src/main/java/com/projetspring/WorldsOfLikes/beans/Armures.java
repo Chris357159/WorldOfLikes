@@ -21,4 +21,13 @@ public class Armures extends Equipment{
     public void setValeurDEF(int valeurDEF) {
         this.valeurDEF = valeurDEF;
     }
+
+    @Override
+    public String toString() {
+        return "Armures{" +
+                "valeurDEF=" + valeurDEF +
+                ", ID=" + ID +
+                ", nom='" + nom + '\'' +
+                '}';
+    }
 }
