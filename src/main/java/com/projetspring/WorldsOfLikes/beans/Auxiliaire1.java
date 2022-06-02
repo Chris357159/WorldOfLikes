@@ -4,9 +4,11 @@ public class Auxiliaire1 {
     private int id;
     private String username;
 
+    //constructeurs
     public Auxiliaire1() {
     }
 
+    //guetteurs et setteurs
     public int getId() {
         return id;
     }

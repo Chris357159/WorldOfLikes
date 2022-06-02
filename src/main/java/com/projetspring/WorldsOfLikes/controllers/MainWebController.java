@@ -1,8 +1,11 @@
 package com.projetspring.WorldsOfLikes.controllers;
 
-import com.projetspring.WorldsOfLikes.beans.Form;
-import com.projetspring.WorldsOfLikes.beans.Auxliaire5;
-import com.projetspring.WorldsOfLikes.repositories.FormRepositoryInterface;
+import com.projetspring.WorldsOfLikes.beans.Auxiliaire7;
+import com.projetspring.WorldsOfLikes.beans.UserData;
+import com.projetspring.WorldsOfLikes.beans.Auxiliaire5;
+import com.projetspring.WorldsOfLikes.beans.UserProfile;
+import com.projetspring.WorldsOfLikes.repositories.UserDataRepositoryInterface;
+import com.projetspring.WorldsOfLikes.repositories.UserProfileRepositoryInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,38 +16,40 @@ public class MainWebController {
 
     //Create DB
     @Autowired
-    private FormRepositoryInterface formRepositoryInterface;
-
+    private UserDataRepositoryInterface userDataRepositoryInterface;
+    @Autowired
+    private UserProfileRepositoryInterface userProfileRepositoryInterface;
     //Insert new registration
     @PostMapping("/registrer")
-    public String registrer(@RequestBody Form form_register){
-        int nombreMail = formRepositoryInterface.countByEmail(form_register.getEmail());
+    public String registrer(@RequestBody UserData userData_register){
+        int nombreMail = userDataRepositoryInterface.countByEmail(userData_register.getEmail());
         if(nombreMail > 0){
             return "MailAlreadyExist";
         }
         else{
-            formRepositoryInterface.save(form_register);
+            userDataRepositoryInterface.save(userData_register);
         }
         return "Ok";
     }
 
     //Login
     @PostMapping("/login")
-    public int login(@RequestBody Form form_register){
-        Form connexion = formRepositoryInterface.findByEmail(form_register.getEmail());
+    public int login(@RequestBody UserData userData_register){
+        UserData connexion = userDataRepositoryInterface.findByEmail(userData_register.getEmail());
         if(connexion == null){
             return 0;
         }
-        else if(!connexion.getMotdepasse().equals(form_register.getMotdepasse())){
+        else if(!connexion.getMotdepasse().equals(userData_register.getMotdepasse())){
             return 0;
         }
         else{
             return (connexion.getID());
         }
     }
+
     @PostMapping("/logged")
-    public int logged(@RequestBody Auxliaire5 form_register){
-        Form connexion = formRepositoryInterface.findByEmail(form_register.getMonEmail());
+    public int logged(@RequestBody Auxiliaire5 form_register){
+        UserData connexion = userDataRepositoryInterface.findByEmail(form_register.getMonEmail());
         if(connexion == null){
             return 0;
         }
@@ -54,5 +59,21 @@ public class MainWebController {
         else{
             return (connexion.getID());
         }
+    }
+    //
+    @PostMapping("/register")
+    public String register(@RequestBody Auxiliaire7 userData_register){
+        int nombreMail = userDataRepositoryInterface.countByEmail(userData_register.getMyEmail());
+        if(nombreMail > 0){
+            return "MailAlreadyExist";
+        }
+        else{
+            UserData userData=new UserData(userData_register.getMyEmail(),userData_register.getMyPassword(),userData_register.getMyAddress());
+            UserProfile userProfile=new UserProfile("Username","heart.png",0,0,userData);
+            userProfileRepositoryInterface.save(userProfile);
+            userData.setSocialNetwork(userProfile);
+            userDataRepositoryInterface.save(userData);
+        }
+        return "Ok";
     }
 }

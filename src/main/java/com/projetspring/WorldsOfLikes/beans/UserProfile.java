@@ -1,52 +1,67 @@
 package com.projetspring.WorldsOfLikes.beans;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-@JsonIgnoreProperties({"follows","subscriptions","posts"})
+@JsonIgnoreProperties({"follows","subscriptions","posts","login"})
 @Entity
-public class SocialNetwork {
+public class UserProfile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String username;
     private String userPhoto;
     private int isLogged;
+    private int likes;
     @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private List<Post>posts;
     @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    private Form login;
+    private UserData login;
     @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    private Set<SocialNetwork> subscriptions;
+    private Set<UserProfile> subscriptions;
     @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    private Set<SocialNetwork> follows;
+    private Set<UserProfile> follows;
 
 
     //constructeurs
-    public SocialNetwork() {
+    public UserProfile() {
     }
-    public SocialNetwork(String username,int isLogged) {
+    public UserProfile(String username, int isLogged) {
         this.username = username;
         this.isLogged = isLogged;
     }
+
+    public UserProfile(String username, String userPhoto, int isLogged, int likes, UserData login) {
+        this.username = username;
+        this.userPhoto = userPhoto;
+        this.isLogged = isLogged;
+        this.likes = likes;
+        this.login = login;
+    }
+
     //getteurs/setteurs
-    public Set<SocialNetwork> getFollows() {
+    public Set<UserProfile> getFollows() {
         return follows;
     }
 
-    public void setFollows(Set<SocialNetwork> follows) {
+    public int getLikes() {
+        return likes;
+    }
+
+    public void setLikes(int likes) {
+        this.likes = likes;
+    }
+
+    public void setFollows(Set<UserProfile> follows) {
         this.follows = follows;
     }
-    public Set<SocialNetwork> getSubscriptions() {
+    public Set<UserProfile> getSubscriptions() {
         return subscriptions;
     }
 
-    public void setSubscriptions(Set<SocialNetwork> subscriptions) {
+    public void setSubscriptions(Set<UserProfile> subscriptions) {
         this.subscriptions = subscriptions;
     }
 
@@ -57,11 +72,11 @@ public class SocialNetwork {
     public void setIsLogged(int isLogged) {
         this.isLogged = isLogged;
     }
-    public Form getLogin() {
+    public UserData getLogin() {
         return login;
     }
 
-    public void setLogin(Form login) {
+    public void setLogin(UserData login) {
         this.login = login;
     }
     public List<Post> getPosts() {
