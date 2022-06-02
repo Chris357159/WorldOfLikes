@@ -1,5 +1,8 @@
 package com.projetspring.WorldsOfLikes.beans;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.apache.catalina.User;
+
 import javax.persistence.*;
 
 
@@ -17,6 +20,7 @@ public class Personnage {
     protected int vitesse;
     public int mana;
     private int gold = 0;
+    private int userData;
 
     //variable heros
     private int experience = 0;
@@ -39,6 +43,17 @@ public class Personnage {
     public Personnage() {
     }
 
+    public Personnage(String nom, int pointDeVieMax, int pointDeVie, int attaque, int defense, int vitesse, int mana, int gold, int userData) {
+        this.nom = nom;
+        PointDeVieMax = pointDeVieMax;
+        PointDeVie = pointDeVie;
+        this.attaque = attaque;
+        this.defense = defense;
+        this.vitesse = vitesse;
+        this.mana = mana;
+        this.gold = gold;
+        this.userData=userData;
+    }
     public Personnage(String nom, int pointDeVieMax, int pointDeVie, int attaque, int defense, int vitesse, int mana, int gold) {
         this.nom = nom;
         PointDeVieMax = pointDeVieMax;
@@ -49,7 +64,6 @@ public class Personnage {
         this.mana = mana;
         this.gold = gold;
     }
-
 
     public void actuNiveau() {
         int atqBase = this.getAttaque();
@@ -70,6 +84,14 @@ public class Personnage {
 
 
     //Getters and Setters heros
+
+    public int getUserData() {
+        return userData;
+    }
+
+    public void setUserData(int userData) {
+        this.userData = userData;
+    }
 
     public int getExperience() {
         return experience;

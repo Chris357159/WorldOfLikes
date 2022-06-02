@@ -1,9 +1,7 @@
 package com.projetspring.WorldsOfLikes.controllers;
 
-import com.projetspring.WorldsOfLikes.beans.Auxiliaire7;
-import com.projetspring.WorldsOfLikes.beans.UserData;
-import com.projetspring.WorldsOfLikes.beans.Auxiliaire5;
-import com.projetspring.WorldsOfLikes.beans.UserProfile;
+import com.projetspring.WorldsOfLikes.beans.*;
+import com.projetspring.WorldsOfLikes.repositories.PersonnageRepositoryInterface;
 import com.projetspring.WorldsOfLikes.repositories.UserDataRepositoryInterface;
 import com.projetspring.WorldsOfLikes.repositories.UserProfileRepositoryInterface;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +17,8 @@ public class MainWebController {
     private UserDataRepositoryInterface userDataRepositoryInterface;
     @Autowired
     private UserProfileRepositoryInterface userProfileRepositoryInterface;
+    @Autowired
+    private PersonnageRepositoryInterface personnageRepositoryInterface;
     //Insert new registration
     @PostMapping("/registrer")
     public String registrer(@RequestBody UserData userData_register){
@@ -70,8 +70,11 @@ public class MainWebController {
         else{
             UserData userData=new UserData(userData_register.getMyEmail(),userData_register.getMyPassword(),userData_register.getMyAddress());
             UserProfile userProfile=new UserProfile("Username","heart.png",0,0,userData);
+            Personnage heros = new Personnage("heros3", 200, 100, 10, 100, 100, 100, 1000,userData.getID());
+            personnageRepositoryInterface.save(heros);
             userProfileRepositoryInterface.save(userProfile);
             userData.setSocialNetwork(userProfile);
+           userData.setForm_personnage(heros);
             userDataRepositoryInterface.save(userData);
         }
         return "Ok";

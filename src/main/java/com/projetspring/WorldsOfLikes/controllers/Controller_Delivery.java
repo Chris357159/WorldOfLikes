@@ -57,7 +57,7 @@ public class Controller_Delivery {
 
     @GetMapping("/ajoutMenuResto")
     public String ajoutMenuResto(){
-        Restauration Resto = new Restauration("Resto b", "bb");
+        Restauration Resto = new Restauration("La causette", "Morsang-sur-Orge");
         Menu menu1=  new Menu( "menu Pizza",  15);
         Menu menu2=  new Menu( "menu Tacos",  7);
         Resto.ajouterMenu(menu1);

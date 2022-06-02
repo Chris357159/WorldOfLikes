@@ -9,6 +9,8 @@ import com.projetspring.WorldsOfLikes.services.Game;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/Game")
@@ -90,7 +92,7 @@ public class GameController {
 
     @GetMapping("/ajoutPersonnages")
     public String ajoutPersonnages() {
-        Personnage heros = new Personnage("heros", 100, 100, 10, 100, 100, 100, 1000);
+        Personnage heros = new Personnage("heros2", 200, 100, 10, 100, 100, 100, 1000);
         personnageRepositoryInterface.save(heros);
         return "OK";
     }
@@ -99,6 +101,10 @@ public class GameController {
     public String combatEnnemi(@RequestBody Personnage ennemi) {
         Personnage heros = new Personnage("heros", 100, 100, 10, 100, 100, 100, 1000);
         return Game.combat(heros, ennemi);
+    }
+    @GetMapping("/envoiData")
+    public List<Personnage> envoiData(){
+        return personnageRepositoryInterface.findAll();
     }
 
 

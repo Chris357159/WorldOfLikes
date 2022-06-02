@@ -19,6 +19,7 @@ public class UserData {
     private UserProfile userProfile;
     @OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
     private ParametresUtilisateur form_parametresUtilisateurs;
+    @JsonIgnoreProperties("form_personnage")
     @OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
     private Personnage form_personnage;
 
